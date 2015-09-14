@@ -1,5 +1,6 @@
 package controller;
 
+
 import model.Model;
 import view.View;
 
@@ -10,11 +11,13 @@ public interface Controller {
 
 	public void createHashMap();
 
-	public void display(String[] arr);
+	public void displayString(String[] arr);
 
-	public void displayMaze(byte[] arr);
+	public void displayByte(byte[] arr);
 
-	public void displayCross(int[][] arr);
+	public void displayInt(int[][] arr);
+	
+	public void exit();
 	
 	
 
