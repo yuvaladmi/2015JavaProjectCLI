@@ -6,12 +6,12 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 
 import controller.Command;
+
 /**
  * 
  * @author Yuval Admi & Afek Ben Simon
- * @since 01.09.2015
- * This class is responsible to start the all system.
- * It gets a command, checks if it exists and sends an order to do it.
+ * @since 01.09.2015 This class is responsible to start the all system. It gets
+ *        a command, checks if it exists and sends an order to do it.
  *
  */
 public class CLI extends Thread {
@@ -20,39 +20,43 @@ public class CLI extends Thread {
     private PrintWriter out;
     private HashMap<String, Command> hm;
     Thread mainThread;
-/**
- * 
- * @return this HashMap
- */
+
+    /**
+     * 
+     * @return this HashMap
+     */
     public HashMap<String, Command> getHm() {
 	return hm;
     }
-/**
- * Sets this HashMap
- * @param hm
- */
+
+    /**
+     * Sets this HashMap
+     * 
+     * @param hm
+     */
     public void setHm(HashMap<String, Command> hm) {
 	this.hm = hm;
     }
-/**
- * CTOR
- * @param in
- * @param out
- * @param hm
- */
+
+    /**
+     * CTOR
+     * 
+     * @param in
+     * @param out
+     * @param hm
+     */
     public CLI(BufferedReader in, PrintWriter out, HashMap<String, Command> hm) {
 	this.in = in;
 	this.out = out;
 	this.hm = hm;
     }
-/**
- * This method starts the whole project.
- */
+
+    /**
+     * This method starts the whole project.
+     */
     public void start() {
-	//the main thread, asking the client what does he want to do next.
+	// the main thread, asking the client what does he want to do next.
 	mainThread = new Thread(new Runnable() {
-	    
-	    @Override
 	    public void run() {
 		Command command;
 		String line;
@@ -72,15 +76,15 @@ public class CLI extends Thread {
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-
 	    }
 	});
 	mainThread.start();
     }
+
     /**
      * This method waiting for the main thread to end his activities.
      */
-    public void exit(){
+    public void exit() {
 	try {
 	    mainThread.join();
 	} catch (InterruptedException e) {

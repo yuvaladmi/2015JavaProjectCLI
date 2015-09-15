@@ -56,7 +56,6 @@ public class MyController extends CommonController {
 	    @Override
 	    public void doCommand(String[] arr) {
 		m.save(arr);
-
 	    }
 	});
 	hm.put("load", new Command() {
@@ -72,33 +71,35 @@ public class MyController extends CommonController {
 	    @Override
 	    public void doCommand(String[] arr) {
 		m.solve(arr);
-
 	    }
 	});
-	hm.put("maze", new Command() {
+		
+		hm.put("maze", new Command() {
+			
+			@Override
+			public void doCommand(String[] arr) {
+				m.gameSize(arr);
+				
+			}
+		});
+		hm.put("file",new Command() {
+			
+			@Override
+			public void doCommand(String[] arr) {
+				m.fileSize(arr);
+				
+			}
+		} );
+		hm.put("exit", new Command() {
+			
+			@Override
+			public void doCommand(String[] arr) {
+				m.close();
+				
+			}
+		});
+	}
 
-	    @Override
-	    public void doCommand(String[] arr) {
-		m.gameSize(arr);
-
-	    }
-	});
-	hm.put("file", new Command() {
-
-	    @Override
-	    public void doCommand(String[] arr) {
-		m.fileSize(arr);
-	    }
-	});
-	hm.put("exit", new Command() {
-
-	    @Override
-	    public void doCommand(String[] arr) {
-		m.close();
-
-	    }
-	});
-    }
 
     @Override
     public void displayString(String[] arr) {

@@ -8,8 +8,7 @@ import controller.Controller;
 /**
  * 
  * @author Yuval Admi & Afek Ben Simon
- * @since 01.09.2015
- * An abstract class which implements View.
+ * @since 01.09.2015 An abstract class which implements View.
  */
 public abstract class CommonView implements View {
 
@@ -26,5 +25,4 @@ public abstract class CommonView implements View {
     public abstract void displayInt(int[][] arr);
 
     public abstract void exit();
-
 }

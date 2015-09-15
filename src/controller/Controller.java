@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.HashMap;
 
 import model.Model;
 import view.View;
@@ -16,6 +17,8 @@ public interface Controller {
 	public void displayByte(byte[] arr);
 
 	public void displayInt(int[][] arr);
+		
+	public HashMap<String, Command> getHm();
 	
 	public void exit();
 	

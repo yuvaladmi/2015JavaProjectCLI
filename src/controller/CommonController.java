@@ -8,8 +8,7 @@ import view.View;
 /**
  * 
  * @author Yuval Admi & Afek Ben simon
- * @since 01.09.2015 
- * An abstract class which implements Controller
+ * @since 01.09.2015 An abstract class which implements Controller
  *
  */
 public abstract class CommonController implements Controller {

@@ -45,8 +45,8 @@ public class MyModel extends CommonModel {
 	hMaze = new HashMap<String, Maze3d>();
 	hSol = new HashMap<String, Solution<Position>>();
 	sb = new StringBuilder();
-	this.numOfThreads = 10;
-	this.threadpool = Executors.newFixedThreadPool(numOfThreads);
+	this.numOfThread = 10;
+	this.threadpool = Executors.newFixedThreadPool(numOfThread);
     }
 
     /**
@@ -122,9 +122,8 @@ public class MyModel extends CommonModel {
 	    c.displayByte(byteArr);
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-
+	    c.displayString(("Error uccord, please try again").split(" "));
+	    }
     }
 
     /**
@@ -221,8 +220,8 @@ public class MyModel extends CommonModel {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-
     }
+
 
     /**
      * This method gets a name of a maze and solving algorithm and solves it in
@@ -241,7 +240,6 @@ public class MyModel extends CommonModel {
 	    c.displayString(("solution for " + name + " is ready").split(" "));
 	}
 	threadpool.execute(new Runnable() {
-
 	    @Override
 	    public void run() {
 		Maze3d m = hMaze.get(name);
@@ -266,14 +264,11 @@ public class MyModel extends CommonModel {
 		    c.displayString(("The algorithm was not found").split(" "));
 		    break;
 		}
-
+		
 		c.displayString(("solution for " + name + " is ready").split(" "));
-
 	    }
 	});
-
     }
-
     /**
      * This method gets a name of a maze and sends the Controller its solution
      */
@@ -338,9 +333,5 @@ public class MyModel extends CommonModel {
 	    e.printStackTrace();
 	}
 
-	System.out.println("all the tasks have finished");
-	c.exit();
-
-    }
-
 }
+	}
