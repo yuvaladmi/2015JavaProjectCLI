@@ -18,7 +18,6 @@ import algorithms.mazeGenerators.Position;
 import algorithms.search.AStar;
 import algorithms.search.BFS;
 import algorithms.search.CommonSearcher;
-import algorithms.search.MazeAirDistance;
 import algorithms.search.MazeManhattenDistance;
 import algorithms.search.SearchableMaze;
 import algorithms.search.Solution;
@@ -205,19 +204,21 @@ public class MyModel extends CommonModel {
     public void load(String[] arr) {
 	String name = arr[arr.length - 1];
 	String fileName = arr[arr.length - 2];
-	byte[] b = null;
 	try {
+	    byte[] temp = new byte[4096];
 	    InputStream in = new MyDecompressorInputStream(new FileInputStream(fileName));
-	    in.read(b);
+	    int numOfBytes = in.read(temp);
 	    in.close();
+	    byte[] b = new byte[numOfBytes];
+	    for(int i=0;i<b.length;i++){
+		b[i] = temp[i];
+	    }
 	    Maze3d maze = new Maze3d(b);
 	    hMaze.put(name, maze);
-	    c.displayString("The maze is loaded".split(" "));
+	    c.displayString("The maze is loaded".split(" ")); 
 	} catch (FileNotFoundException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
@@ -247,12 +248,10 @@ public class MyModel extends CommonModel {
 		CommonSearcher<Position> cs;
 		switch (nameAlg) {
 		case "Astar":
-		    cs = new AStar<Position>(new MazeAirDistance());
 		    cs = new AStar<Position>(new MazeManhattenDistance());
 		    hSol.put(name, cs.search(sMaze));
 		    break;
 		case "A*":
-		    cs = new AStar<Position>(new MazeAirDistance());
 		    cs = new AStar<Position>(new MazeManhattenDistance());
 		    hSol.put(name, cs.search(sMaze));
 		    break;
@@ -326,10 +325,9 @@ public class MyModel extends CommonModel {
 	// finished
 	try {
 	    boolean allTasksCompleted = false;
-	    while (!(allTasksCompleted = threadpool.awaitTermination(10, TimeUnit.SECONDS)))
-		;
+	    while (!(allTasksCompleted = threadpool.awaitTermination(10, TimeUnit.SECONDS)));
+	    c.exit();
 	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 

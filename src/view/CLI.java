@@ -61,16 +61,19 @@ public class CLI extends Thread {
 		Command command;
 		String line;
 		try {
-		    System.out.println("enter new command:");
+		    out.println("enter new command:");
+		    out.flush();
 		    while ((line = in.readLine().intern()) != "exit") {
 			String[] temp = line.split(" ");
 			if ((command = hm.get(temp[0])) != null) {
 			    command.doCommand(temp);
 			} else {
-			    System.out.println("Command does not exist, please try again");
+			    out.println("Command does not exist, please try again");
+			    out.flush();
 			}
 		    }
-		    System.out.println("bye bye");
+		    out.println("bye bye");
+		    out.flush();
 		    command = hm.get("exit");
 		    command.doCommand(line.split(" "));
 		} catch (IOException e) {
@@ -81,15 +84,5 @@ public class CLI extends Thread {
 	mainThread.start();
     }
 
-    /**
-     * This method waiting for the main thread to end his activities.
-     */
-    public void exit() {
-	try {
-	    mainThread.join();
-	} catch (InterruptedException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-    }
+ 
 }

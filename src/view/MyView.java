@@ -102,7 +102,6 @@ public class MyView extends CommonView {
  */
     @Override
     public void exit() {
-	cli.exit();
 	System.out.println("Server is safely closed");
     }
 }

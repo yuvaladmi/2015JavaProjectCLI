@@ -22,6 +22,14 @@ public abstract class CommonModel implements Model {
     public int numOfThread;
     public ExecutorService threadpool;
 
+    public abstract void dirToPath(String[] arr);
+
+    public abstract void generateMaze(String[] arr);
+
+    public abstract void sendGame(String[] arr);
+
+    public abstract void crossSection(String[] arr);
+
     public abstract void save(String[] arr);
 
     public abstract void load(String[] arr);
