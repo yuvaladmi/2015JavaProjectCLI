@@ -59,12 +59,13 @@ public class MyModel extends CommonModel {
 	String s = arr[arr.length - 1];
 	try {
 	    f = new File(s);
-	    c.displayString(f.list());
+	    String[] temp = f.list();
+	    for(int i=0;i<temp.length;i++){
+		sb.append(temp[i]);
+	    }
+	    c.displayString(sb.toString());
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
-	    // e.toString();
-	    String[] error = "Folder does not exist".split(" ");
-	    c.displayString(error);
+	    c.displayString("Folder does not exist");
 	}
     }
 
@@ -98,8 +99,7 @@ public class MyModel extends CommonModel {
 		MyMaze3dGenerator mg = new MyMaze3dGenerator(x, y, z);
 		Maze3d m = mg.generate(x, y, z);
 		hMaze.put(name, m);
-		String[] messege = ("maze " + name + " is ready").split(" ");
-		c.displayString(messege);
+		c.displayString("maze " + name + " is ready");
 	    }
 	});
     }
@@ -121,7 +121,7 @@ public class MyModel extends CommonModel {
 	    c.displayByte(byteArr);
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
-	    c.displayString(("Error uccord, please try again").split(" "));
+	    c.displayString("Error uccord, please try again");
 	    }
     }
 
@@ -166,7 +166,7 @@ public class MyModel extends CommonModel {
 	    break;
 
 	default:
-	    System.out.println("undefined letter ");
+	    c.displayString("undefined letter ");
 	    break;
 	}
 	c.displayInt(myMaze);
@@ -186,7 +186,7 @@ public class MyModel extends CommonModel {
 	    OutputStream out = new MyCompressorOutputStream(new FileOutputStream(fileName));
 	    out.write(m.toByteArray());
 	    out.close();
-	    c.displayString("The maze is saved".split(" "));
+	    c.displayString("The maze is saved");
 	} catch (FileNotFoundException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -215,7 +215,7 @@ public class MyModel extends CommonModel {
 	    }
 	    Maze3d maze = new Maze3d(b);
 	    hMaze.put(name, maze);
-	    c.displayString("The maze is loaded".split(" ")); 
+	    c.displayString("The maze is loaded"); 
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
 	} catch (IOException e) {
@@ -238,7 +238,7 @@ public class MyModel extends CommonModel {
 	String name = sb.toString();
 
 	if ((hSol.get(name)) != null) {
-	    c.displayString(("solution for " + name + " is ready").split(" "));
+	    c.displayString("solution for " + name + " is ready");
 	}
 	threadpool.execute(new Runnable() {
 	    @Override
@@ -260,11 +260,11 @@ public class MyModel extends CommonModel {
 		    hSol.put(name, cs.search(sMaze));
 		    break;
 		default:
-		    c.displayString(("The algorithm was not found").split(" "));
+		    c.displayString("The algorithm was not found");
 		    break;
 		}
 		
-		c.displayString(("solution for " + name + " is ready").split(" "));
+		c.displayString("solution for " + name + " is ready");
 	    }
 	});
     }
@@ -280,10 +280,10 @@ public class MyModel extends CommonModel {
 	    while (!sol.isEmpty()) {
 		sb.append(sol.pop());
 	    }
-	    c.displayString(sb.toString().split(" "));
+	    c.displayString(sb.toString());
 	    return;
 	}
-	c.displayString(("Solution do not exist for " + arr[arr.length - 1] + " maze.").split(" "));
+	c.displayString("Solution do not exist for " + arr[arr.length - 1] + " maze.");
     }
 
     /**
@@ -294,9 +294,9 @@ public class MyModel extends CommonModel {
 	Maze3d temp = hMaze.get(arr[arr.length - 1]);
 	try {
 	    int size = (temp.toByteArray()).length;
-	    c.displayString(("Maze " + arr[arr.length - 1] + " size is:" + size).split(" "));
+	    c.displayString("Maze " + arr[arr.length - 1] + " size is:" + size);
 	} catch (IOException e) {
-	    c.displayString(("Error, please try again...").split(" "));
+	    c.displayString("Error, please try again...");
 	}
     }
 
@@ -308,9 +308,9 @@ public class MyModel extends CommonModel {
 	File f = new File(arr[arr.length - 1]);
 	if (f.exists()) {
 	    long size = f.length();
-	    c.displayString(("File " + arr[arr.length - 1] + " size is:" + size).split(" "));
+	    c.displayString("File " + arr[arr.length - 1] + " size is:" + size);
 	} else {
-	    c.displayString(("Error, please try again...").split(" "));
+	    c.displayString("Error, please try again...");
 	}
     }
 
@@ -319,7 +319,7 @@ public class MyModel extends CommonModel {
      */
     @Override
     public void close() {
-	System.out.println("shutting down");
+	c.displayString("shutting down");
 	threadpool.shutdown();
 	// wait 10 seconds over and over again until all running jobs have
 	// finished

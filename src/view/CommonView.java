@@ -18,7 +18,7 @@ public abstract class CommonView implements View {
 
     public abstract void start();
 
-    public abstract void displayString(String[] arr);
+    public abstract void displayString(String arr);
 
     public abstract void displayByte(byte[] arr);
 

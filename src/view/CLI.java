@@ -14,7 +14,7 @@ import controller.Command;
  *        a command, checks if it exists and sends an order to do it.
  *
  */
-public class CLI extends Thread {
+public class CLI {
 
     private BufferedReader in;
     private PrintWriter out;

@@ -50,10 +50,9 @@ public class MyView extends CommonView {
  * Display an array of Strings
  */
     @Override
-    public void displayString(String[] arr) {
-	for (int i = 0; i < arr.length; i++) {
-	    System.out.print(arr[i] + " ");
-	}
+    public void displayString(String arr) {
+	    System.out.print(arr);
+	
     }
 /**
  * Display an array of bytes

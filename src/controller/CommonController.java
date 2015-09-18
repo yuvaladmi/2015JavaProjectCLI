@@ -18,7 +18,7 @@ public abstract class CommonController implements Controller {
 
     public abstract void createHashMap();
 
-    public abstract void displayString(String[] arr);
+    public abstract void displayString(String arr);
 
     public abstract void displayByte(byte[] arr);
 

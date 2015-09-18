@@ -102,7 +102,7 @@ public class MyController extends CommonController {
 
 
     @Override
-    public void displayString(String[] arr) {
+    public void displayString(String arr) {
 	v.displayString(arr);
     }
 

@@ -12,7 +12,7 @@ public interface Controller {
 
 	public void createHashMap();
 
-	public void displayString(String[] arr);
+	public void displayString(String arr);
 
 	public void displayByte(byte[] arr);
 
